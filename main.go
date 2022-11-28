@@ -1,7 +1,16 @@
 package main
 
-import "log"
+import (
+	"log"
+	"net/http"
+
+	"github.com/mnlprz/buckethead-discography/handlers"
+)
 
 func main() {
-	log.Println("hello world")
+
+	r := handlers.SetUpHandlers()
+	if err := http.ListenAndServe(":5555", r); err != nil {
+		log.Fatal(err)
+	}
 }
